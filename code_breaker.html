@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h3>Here do you start the game:</h3>
+<div onclick="codeBreaker();">
+    <p style="font-size:42pt;color: black; text-shadow:grey 0.05em 0.05em 0.1em;"
+    >Code_Breaker...&#128272;</p></div>
+
+
+    <h1>HELLO!</h1>
+    <h2>In this game you should try to crack the code within 20 tries! 
+        The console will help you!
+    </h2>
+<script>
+   
+function codeBreaker()
+{
+    var codeTryPlayer;
+    var computerNumber1;
+    var computerNumber2;
+    var computerNumber3;
+    var playerFullTry;
+    var playerNumber1;
+    var playerNumber2;
+    var playerNumber3;
+
+    var rightNumberWrongPlace = 0;
+    var correctNumber = 0;
+    var numberOfTries =0;
+
+    computerNumber1 = Math.round(Math.random() * 9)
+    computerNumber2 = Math.round(Math.random() * 9)
+    computerNumber3 = Math.round(Math.random() * 9)
+
+    do
+    {
+        playerFullTry= prompt("Guess the code", "from 000-999");
+
+        playerNumber1 = playerFullTry.charAt(0);
+        playerNumber2 =playerFullTry.charAt(1);
+        playerNumber3 =playerFullTry.charAt(2);
+
+        rightNumberWrongPlace = 0;
+        correctNumber = 0;
+
+        if (playerNumber1 == computerNumber1)
+        {
+            correctNumber++ ;
+            console.log("The first number was correct! " + playerNumber1)
+        } 
+        else if (playerNumber1 == computerNumber2 || playerNumber1 == computerNumber3)
+        {
+            rightNumberWrongPlace++;
+            console.log("The first number was right but in the wrong place!");
+        }
+
+        if (playerNumber2 == computerNumber2)
+        {
+            correctNumber++;
+            console.log("The second number was correct! " + playerNumber2);
+        } 
+        else if (playerNumber2 == computerNumber1 || playerNumber2 == computerNumber3)
+        {
+            rightNumberWrongPlace++;
+            console.log("The second number was right but in the wrong place!");
+        }
+        
+        if (playerNumber3 == computerNumber3)
+        {
+            correctNumber++;
+            console.log("The third Number was correct!" + playerNumber3);
+        }
+        else if (playerNumber3 == computerNumber1 || playerNumber3 == computerNumber2)
+        {
+            rightNumberWrongPlace++;
+            console.log("The third number was right but in the wrong place!");
+        }
+
+        alert("This many Numbers were right:  " + correctNumber + "\n" +
+            "This many numbers were right but in the wrong place: " + rightNumberWrongPlace); 
+
+        console.log(playerFullTry)
+        numberOfTries++;
+    } while (correctNumber < 3 && numberOfTries < 20)
+
+    if (correctNumber == 3)
+    {
+        alert("You cracked the code congratulations!\n" + "Number of tries: " + numberOfTries);
+    }
+    else
+    {
+        alert("You lost! Better luck next time!");
+    }
+    alert("If you are not sure, the correct code was:\n" + computerNumber1 + computerNumber2 + computerNumber3);
+}
+</script>
+</body>
+</html>
